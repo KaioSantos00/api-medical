@@ -4,7 +4,7 @@ from django.db import models
 
 class Recommendation(models.Model):
     name = models.CharField(max_length=255, null=False)
-    avatar = models.ImageField(upload_to='medical/avatars/%Y/%m/%d/')
+    avatar = models.ImageField(upload_to='')
     phone = models.CharField(max_length=20, null=False)
     email = models.CharField(max_length=100, null=False)
     street = models.CharField(max_length=100)
@@ -26,11 +26,12 @@ class Procedure(models.Model):
     def __str__(self):
         return str(self.title)
 
-
+def upload_image(instance, filename):
+    return f'{instance.pk}-{filename}'
 class Users(AbstractUser):
     cpf = models.CharField('CPF', max_length=50, null=True)
     avatar = models.ImageField(
-        upload_to='medical/avatars/%Y/%m/%d/')
+        upload_to=upload_image)
     birth_date = models.DateField(null=True)
     street = models.CharField(max_length=100, null=True)
     number = models.CharField(max_length=50, null=True)
