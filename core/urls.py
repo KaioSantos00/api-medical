@@ -7,6 +7,7 @@ router = SimpleRouter()
 router.register('reco', RecommendationViewSet)
 router.register('proc', ProcedureViewSet)
 router.register('user', UsersViewSet)
+router.register('userprocedure', UserProcedureViewSet)
 # router.register('avaliacoes', AvaliacaoViewSet)
 
 
